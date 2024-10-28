@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Daftar Obat</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+  <div class="container-home">
+    <h1>List Obat</h1>
+
+    <button class="add-button">
+      <a th:href="@{/add-obat}" >Add Obat</a>
+    </button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr th:each="obat : ${obatList}">
+          <td th:text="${obat.id}"></td>
+          <td th:text="${obat.namaObat}"></td>
+          <td th:text="${obat.price}"></td>
+          <td th:text="${obat.description}"></td>
+          <td>
+            <button class="delete-button">
+              <a th:href="@{'/delete-obat/' + ${obat.id}}"
+              onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Delete</a>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+
+</body>
+
+</html>
