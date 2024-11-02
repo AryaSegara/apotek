@@ -46,7 +46,7 @@ public class LoginController {
         Login login = loginService.findByUsernameAndPassword(username, password);
         if(login != null){
             model.addAttribute("login",login);
-            return "home";
+            return "redirect:/home";
         }else{
             return "redirect:/login";
         }
