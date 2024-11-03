@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Add New Category</title>
+
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #d3e8d3;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+            .container {
+                background-color: #8fc1a9;
+                padding: 20px 30px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                width: 600px;
+            }
+            h1 {
+                text-align: center;
+                color: #333;
+            }
+            label {
+                display: block;
+                margin-top: 10px;
+                color: #333;
+            }
+            input[type="text"], textarea {
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            textarea {
+                height: 100px;
+            }
+            .buttons {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+            }
+            .buttons button {
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .back-button {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 20px;
+                text-decoration: none;
+                border: 1px solid #6c757d;
+                border-radius: 5px;
+                background-color: #6c757d;
+                color: white;
+            }
+            .save-button {
+                background-color: #007bff;
+                color: white;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Add New Category</h1>
+            <form th:action="@{/save-category}" th:object="${category}" method="post">
+                <label for="name">Category Name</label>
+                <input type="text" id="name" th:field="*{name}" required>
+                
+                <label for="description">Description</label>
+                <textarea id="description" th:field="*{description}"></textarea>
+                
+                <div class="buttons">
+                    <a th:href="@{/list-category}" class="back-button">Back to Category List</a>
+                    <button type="submit" class="save-button">Save Category</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
