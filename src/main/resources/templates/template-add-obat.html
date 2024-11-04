@@ -1,0 +1,94 @@
+<html>
+<head>
+    <title>Add New Obat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f2f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #a5d6a7;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 5px;
+            color: #333;
+        }
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button-container .back-button {
+            background-color: #757575;
+            color: white;
+        }
+        .button-container .save-button {
+            background-color: #1e88e5;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add New Obat</h1>
+        <form>
+            <label for="nama-obat">Nama Obat</label>
+            <input type="text" id="nama-obat" name="nama-obat">
+            
+            <label for="price">Price</label>
+            <input type="text" id="price" name="price">
+            
+            <label for="description">Description</label>
+            <textarea id="description" name="description"></textarea>
+            
+            <label for="category">Category</label>
+            <select id="category" name="category">
+                <option value="">Select Category</option>
+                <!-- Add other categories as needed -->
+            </select>
+            
+            <label for="supplier">Supplier</label>
+            <select id="supplier" name="supplier">
+                <option value="">Select Supplier</option>
+                <!-- Add other suppliers as needed -->
+            </select>
+            
+            <div class="button-container">
+                <button type="button" class="back-button">Back to List</button>
+                <button type="submit" class="save-button">Save Obat</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
