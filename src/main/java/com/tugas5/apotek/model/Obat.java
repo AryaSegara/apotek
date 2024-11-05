@@ -21,9 +21,9 @@ public class Obat {
 
     @ManyToOne
     @JoinColumn(name = "category_id" , referencedColumnName = "id")
-    private Category category;
+    private Category category; //ini dari category_id
 
     @ManyToOne
     @JoinColumn(name = "supplier_id" , referencedColumnName = "id")
-    private Supplier supplier;
+    private Supplier supplier; // ini dari supplier_id
 }

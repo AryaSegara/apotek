@@ -32,6 +32,8 @@ public class ObatController {
     public String addObatPage(Model model){
         Obat obat = new Obat();
         model.addAttribute("obat", obat);
+        model.addAttribute("categoryList", obatService.getAllCategory());
+        model.addAttribute("supplierList", obatService.getAllSupplier());
         return "add-obat";
     }
 
@@ -41,6 +43,36 @@ public class ObatController {
         obatService.saveObat(obat);
         return "redirect:/home";
     }
+
+
+    // menampilkan halaman edit obat berdasarkan ID
+    @GetMapping("/update-obat/{id}")
+    public String updateObatPage(@PathVariable Integer id, Model model){
+        Obat obat = obatService.findById(id);
+        model.addAttribute("obat", obat);
+        model.addAttribute("categoryList", obatService.getAllCategory());
+        model.addAttribute("supplierList", obatService.getAllSupplier());
+        return "update-obat";
+    }
+
+
+    // memperbarui data obat yang sudah ada
+    @PostMapping("/update-obat/{id}")
+    public String updateObat(@PathVariable Integer id, @ModelAttribute("obat") Obat obat){
+
+        // mendapatkan obat yang sudah ada berdasarkan ID
+        Obat update = obatService.findById(id);
+        update.setNamaObat(obat.getNamaObat());
+        update.setCategory(obat.getCategory());
+        update.setSupplier(obat.getSupplier());
+        update.setPrice(obat.getPrice());
+        update.setDescription(obat.getDescription());
+
+        // menyimpan perubahan ke database
+        obatService.saveObat(update);
+        return "redirect:/home";
+    }
+
 
     // menghapus obat berdasarkan ID
     @GetMapping("/delete-obat/{id}")

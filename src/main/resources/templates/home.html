@@ -1,52 +1,104 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-  <title>Daftar Obat</title>
-  <link rel="stylesheet" th:href="@{/style.css}">
+    <title>List Obat</title>
+    <!-- <link rel="stylesheet" th:href="@{/style.css}"> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d0e8d0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #333;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+        }
+        .btn-add {
+            background-color: #007bff;
+            float: right;
+        }
+        .btn-edit {
+            background-color: #ffc107;
+            color: black;
+        }
+        .btn-delete {
+            background-color: #dc3545;
+        }
+    </style>
 </head>
-
 <body>
-
-  <div class="container-home">
-    <h1>List Obat</h1>
-
-    <button class="add-button">
-      <a th:href="@{/add-obat}" >Add Obat</a>
-    </button>
-
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Description</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr th:each="obat : ${obatList}">
-          <td th:text="${obat.id}"></td>
-          <td th:text="${obat.namaObat}"></td>
-          <td th:text="${obat.price}"></td>
-          <td th:text="${obat.description}"></td>
-          <td>
-            <button class="delete-button">
-              <a th:href="@{'/delete-obat/' + ${obat.id}}"
-              onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Delete</a>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-
-    </table>
-
-  </div>
-
-
-
+    <div class="container">
+        <h1>List Obat</h1>
+        <a th:href="@{/add-obat}" class="btn btn-add">Add New Obat</a>
+        <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nama Obat</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Supplier Name</th>
+                <th>Supplier Phone</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+      
+            <tbody>
+              <tr th:each="obat : ${obatList}">
+                <td th:text="${obat.id}"></td>
+                <td th:text="${obat.namaObat}"></td>
+                <td th:text="${obat.price}"></td>
+                <td th:text="${obat.description}"></td>
+                <td th:text="${obat.category.name}"></td>
+                <td th:text="${obat.supplier.name}"></td>
+                <td th:text="${obat.supplier.phone}"></td>
+                <td>
+                  <a th:href="@{/update-obat/{id}(id=${obat.id})}" class="btn btn-edit">Edit</a>
+      
+                  <a th:href="@{/delete-obat/{id}(id=${obat.id})}" class="btn btn-delete">Delete</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        <a th:href="@{/list-supplier}" class="btn btn-primary">List Supplier</a>
+        <a th:href="@{/list-category}" class="btn btn-primary">List Category</a>
+    </div>
 </body>
-
 </html>

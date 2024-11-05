@@ -1,38 +1,93 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html>
 <head>
-    <title>Tambah Obat</title>
-    <link rel="stylesheet" th:href="@{/style.css}">
+    <title>Add New Obat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f2f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #a5d6a7;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 5px;
+            color: #333;
+        }
+        input[type="text"],[type="number"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button-container .back-button {
+            background-color: #757575;
+            color: white;
+        }
+        .button-container .save-button {
+            background-color: #1e88e5;
+            color: white;
+        }
+    </style>
 </head>
-
 <body>
+    <div class="container">
+        <h1>Add New Obat</h1>
+        <form th:action="@{/save-obat}" th:object="${obat}" method="post">
+            <label for="namaObat">Nama Obat</label>
+            <input type="text" id="nama-obat" name="namaObat" th:field="*{namaObat}">
+            
+            <label for="price">Price</label>
+            <input type="number" id="price" name="price" th:field="*{price}">
+            
+            <label for="description">Description</label>
+            <textarea id="description" name="description"  th:field="*{description}"></textarea>
 
-    <div class="form-container">
-        <h2>Add Obat</h2>
-
-        <form th:action="@{/save-obat}" method="post">
-            <div class="form-group">
-                <label>Name Obat:</label>
-                <input type="text" th:field="${obat.namaObat}" required />
+            
+            <label>Category :</label>
+            <select id="category" name="category" th:field="*{category.id}">
+                <option th:each="category : ${categoryList}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+            
+            <label>Supplier :</label>
+            <select id="supplier" name="supplier" th:field="*{supplier.id}">
+                <option th:each="supplier : ${supplierList}" th:value="${supplier.id}" th:text="${supplier.name}"></option>
+            </select>
+            
+            <div class="button-container">
+                <a th:href="@{/home}" class="back-button">Back to List</a>
+                <button type="submit" class="save-button">Save Obat</button>
             </div>
-            <div class="form-group">
-                <label>Price:</label>
-                <input type="number" th:field="${obat.price}" required />
-            </div>
-            <div class="form-group">
-                <label>Deskripsi:</label>
-                <input type="text" th:field="${obat.description}" required />
-            </div>
-            <button type="submit" class="submit-btn">
-                Save
-            </button>
-
-            <a th:href="@{/home}" class="back-btn">Back to List</a>
-
         </form>
     </div>
-
 </body>
-
 </html>
