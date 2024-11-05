@@ -37,11 +37,11 @@ public class ObatController {
         return "add-obat";
     }
 
-    // menambahkan data obat baru
+    // menambahkan data obat baru 
     @PostMapping("/save-obat")
     public String addObat(@ModelAttribute ("obat") Obat obat){
         obatService.saveObat(obat);
-        return "redirect:/home";
+        return "redirect:/home"; //dan setelah meng submit langsung kembali ke halaman html home
     }
 
 
